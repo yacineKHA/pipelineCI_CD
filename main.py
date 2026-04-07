@@ -3,7 +3,12 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 
 app = FastAPI()
-model = joblib.load("model.pkl")
+model = None
+
+@app.on_event("startup")
+def load_model():
+    global model
+    model = joblib.load("model.pkl")
 
 SPECIES = ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]
 
