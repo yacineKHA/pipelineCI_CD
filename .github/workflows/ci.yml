@@ -27,6 +27,9 @@ jobs:
   docs:
     name: Deploy Docs
     runs-on: ubuntu-22.04
+    needs: tests
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -40,6 +43,8 @@ jobs:
 
       - name: Deploiement GitHub Pages
         run: mkdocs gh-deploy --force
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   docker:
     name: Build & Push Docker Images
