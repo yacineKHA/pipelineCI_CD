@@ -9,7 +9,6 @@ env/
 mlruns/
 mlflow.db
 
-model.pkl
 
 *.sqlite
 
