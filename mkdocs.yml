@@ -1,0 +1,9 @@
+site_name: Iris Classifier
+site_description: API de classification Iris
+docs_dir: docs
+
+nav:
+  - Accueil: index.md
+
+theme:
+  name: material

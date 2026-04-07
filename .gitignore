@@ -1,0 +1,18 @@
+__pycache__/
+dist/
+build/
+
+.venv/
+venv/
+env/
+
+mlruns/
+mlflow.db
+
+model.pkl
+
+*.sqlite
+
+
+# MkDocs
+site/
