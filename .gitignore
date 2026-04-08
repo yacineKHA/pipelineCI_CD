@@ -1,17 +1,10 @@
 __pycache__/
 dist/
-build/
 
 .venv/
-venv/
-env/
-
 mlruns/
 mlflow.db
 
 
 *.sqlite
 
-
-# MkDocs
-site/

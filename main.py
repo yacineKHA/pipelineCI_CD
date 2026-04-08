@@ -5,10 +5,6 @@ from pydantic import BaseModel
 app = FastAPI()
 model = None
 
-@app.on_event("startup")
-def load_model():
-    global model
-    model = joblib.load("model.pkl")
 
 SPECIES = ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]
 
@@ -22,6 +18,8 @@ class IrisFeatures(BaseModel):
 
 @app.post("/predict")
 def predict(features: IrisFeatures):
+    model = joblib.load("model.pkl")
     X = [[features.sepal_length, features.sepal_width, features.petal_length, features.petal_width]]
     prediction = model.predict(X)[0]
+    print(f"Predicted class index: {prediction}, Species: {SPECIES[prediction]}")
     return {"species": SPECIES[prediction]}

@@ -74,3 +74,25 @@ jobs:
           file: Dockerfile.frontend
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/iris-frontend:latest
+
+  deploy:
+    name: Deploy to Azure App Service
+    runs-on: ubuntu-22.04
+    needs: docker
+    steps:
+      - name: Login Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy backend
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ secrets.AZURE_BACKEND_APP_NAME }}
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/iris-backend:latest
+
+      - name: Deploy frontend
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ secrets.AZURE_FRONTEND_APP_NAME }}
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/iris-frontend:latest
