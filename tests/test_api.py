@@ -14,7 +14,6 @@ def test_predict_setosa():
     assert response.status_code == 200
     assert "species" in response.json()
 
-
 def test_predict_virginica():
     response = client.post("/predict", json={
         "sepal_length": 6.7,
@@ -24,7 +23,6 @@ def test_predict_virginica():
     })
     assert response.status_code == 200
     assert response.json()["species"] == "Iris-virginica"
-
 
 def test_predict_invalid():
     response = client.post("/predict", json={"sepal_length": "abc"})
