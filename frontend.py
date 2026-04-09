@@ -5,7 +5,7 @@ import requests
 BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
 
 st.title("Iris Flower Classifier")
-st.write("Renseigne de la fleur pour prédire l'espèce.")
+st.write("Renseigneles blablabla fleur pour prédire l'espèce.")
 
 col1, col2 = st.columns(2)
 
